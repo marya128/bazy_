@@ -1,0 +1,67 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"> -->
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/przepisy">Przepisy</a></li> 
+                <li><a href="#">Inventory</a></li>
+                <li><a href="#">Recenzje</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h1>elo, podaj produkty, które masz</h1>
+
+    <p>Wybierz skladnik:</p>
+        <form method="POST">
+            <SELECT id="myform" name="ingr" multiple>
+            {% for row in results %}
+                <OPTION value={{row[0]}}>{{row[0]}}</OPTION>
+            {% endfor %}
+            </SELECT>
+            <input name="column" type="submit"></input>
+        </form>
+
+        {% if selected_ingredients %}
+        <p>Wybrano:</p>
+            {% for row in selected_ingredients %}
+                <li>{{row}}</li>
+            {% endfor %}
+        {% endif %}
+   
+    <h1>suggested przepisy</h1>
+    <p>{{ results2 }}</p>
+    <!-- <section class="ingredient input container">
+        <h2>odaj produkty, które masz</h2>
+            <div id="ingredient-search-form">
+                <select id="select2-ingredients" class="js-example-basic-multiple" name="states[]" multiple="multiple"></select>
+                <button class="ingredient add btn btn-outline-secondary">Wybierz</button>
+            </div>
+    </section> -->
+
+
+    <!-- <table>
+        <tr>
+            <th>id</th>
+            <th>nazwa</th>
+            <th>pojemnosc</th>
+            <th>unit</th>
+        </tr>
+        {% for row in results %}
+            <tr>
+                <td>{{row[0]}}</td>
+                <td>{{row[1]}}</td>
+                <td>{{row[2]}}</td>
+                <td>{{row[3]}}</td>
+            </tr>
+        {% endfor %}
+    </table> -->
+</body>
+</html>
