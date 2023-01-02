@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wyszukiwanie po nazwie</title>
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+ <h2>Znalezione przepisy:</h2>
+ <table>
+  <tr>
+    <th>id przepisu</th>
+    <th>nazwa</th>
+    <th>instrukcja</th>
+    <th>rozmiar porcji </th>
+    <th>ocena</th>
+    <th>ilosc skladnikow</th>
+  </tr>
+  {% for row in results3 %}
+  <tr>
+    <td>{{row[0]}}</td>
+    <td>{{row[1]}}</td>
+    <td>{{row[2]}}</td>
+    <td>{{row[3]}}</td>
+    <td>{{row[4]}}</td>
+    <td>{{row[5]}}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+</body>
+</html>

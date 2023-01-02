@@ -3,65 +3,98 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"> -->
+    <title>Wyszukiwarka przepisów</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <style>
+        #myform2 {
+            float:right;
+           font-size: 16px;
+            background-color: #33cccc;
+            padding: 10px;
+            height: auto;
+            /* margin-down: 1500px;" */
+        }
+    </style>
 </head>
-<body>
+<body background = "templates/wallpaperflare.com_wallpaper.jpg">
     <header>
+   <div style="text-align: center">
+</div>
         <nav>
             <ul>
-                <li><a href="/przepisy">Przepisy</a></li> 
-                <li><a href="#">Inventory</a></li>
-                <li><a href="#">Recenzje</a></li>
+                <li><a href="#">Dzień dobry {{session.nazwa}} (id={{session.id_user}})</a></li>
+                <li><a href="/przepisy">Przepisy</a></li>
+                <li><a href="/lodowka">Moja Lodówka</a></li>
+                <li><a href="/recenzje">Recenzje</a></li>
+                <li></li><a href="{{ url_for('logout') }}" class="btn">Wyloguj</a></li>
             </ul>
         </nav>
+        <div style="text-align: center">
+            <form method="POST">
+                <input type="text" name=recipe_name placeholder="Szukaj po nazwie przepisu" style="padding: 10px; border: 2px solid black; width: 250px;">
+                <button type="submit" style="padding: 10px; border: 2px solid black;">Szukaj</button>
+            </form>
+        </div>
     </header>
 
-    <h1>elo, podaj produkty, które masz</h1>
-
-    <p>Wybierz skladnik:</p>
-        <form method="POST">
-            <SELECT id="myform" name="ingr" multiple>
+    <h3>Wybierz produkty z rozwijanej listy, które posiadasz lub wpisz ich nazwy aby otrzymać najbardziej zbliżone przepisy dla tych składników</h3>
+    <form method="POST">
+        <SELECT id="myform" name="ingr" multiple style="border: 2px solid black; background-color: #eee;">
             {% for row in results %}
                 <OPTION value={{row[0]}}>{{row[0]}}</OPTION>
             {% endfor %}
-            </SELECT>
-            <input name="column" type="submit"></input>
-        </form>
+        </SELECT>
+        <input name="column" type="submit" style="display: block;"></input>
+    </form>
 
-        {% if selected_ingredients %}
-        <p>Wybrano:</p>
-            {% for row in selected_ingredients %}
-                <li>{{row}}</li>
-            {% endfor %}
-        {% endif %}
+    <form method="POST" id="ingr2" style="display: block; margin-left: 150px; margin-bottom: 10px">
+        <input type="text" name="ingr2" placeholder="Wpisz składnik\składniki" width="300px">
+        <button type="submit">Szukaj</button>
+    </form>
+
+    <h2>Proponowane przepisy:</h2>
+ <table id="przepisyTable" style="border: 1px solid black">
+  <tr>
+    <th>id przepisu</th>
+    <th>nazwa</th>
+    <th>rozmiar porcji</th>
+    <th>ocena</th>
+    <th>ilosc posiadanych skladnikow</th>
+    <th>ilosc skladnikow w przepisie</th>
+    <th>procent_zgodnosci</th>
+  </tr>
+  {% for row in results2 %}
+  <tr>
+    <td>{{row[0]}}</td>
+    <td>{{row[1]}}</td>
+    <td>{{row[2]}}</td>
+    <td>{{row[3]}}</td>
+    <td>{{row[4]}}</td>
+    <td>{{row[5]}}</td>
+    <td>{{row[6]}}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+
+<footer>
+
+    <p style="color: yellow;">Usun konto</p>
+
+    <form action="{{ url_for('usun') }}" method="POST" id="usuwanie">
+        
+        <button onclick="myFunction()">Usun konto</button>
+
+        <script>
+            function myFunction() {
+            confirm("Uwaga, Twoje konto zostanie za chwilę usunietę");
+            }
+        </script>
+
+    </form>
    
-    <h1>suggested przepisy</h1>
-    <p>{{ results2 }}</p>
-    <!-- <section class="ingredient input container">
-        <h2>odaj produkty, które masz</h2>
-            <div id="ingredient-search-form">
-                <select id="select2-ingredients" class="js-example-basic-multiple" name="states[]" multiple="multiple"></select>
-                <button class="ingredient add btn btn-outline-secondary">Wybierz</button>
-            </div>
-    </section> -->
+</footer>
 
 
-    <!-- <table>
-        <tr>
-            <th>id</th>
-            <th>nazwa</th>
-            <th>pojemnosc</th>
-            <th>unit</th>
-        </tr>
-        {% for row in results %}
-            <tr>
-                <td>{{row[0]}}</td>
-                <td>{{row[1]}}</td>
-                <td>{{row[2]}}</td>
-                <td>{{row[3]}}</td>
-            </tr>
-        {% endfor %}
-    </table> -->
 </body>
 </html>
