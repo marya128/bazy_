@@ -415,4 +415,4 @@ def top10():
     return render_template('top10.html', results=results)
 
 if __name__ == "__main__":
-    app.run(debug=True,host='0.0.0.0', port=5002)
+    app.run()
