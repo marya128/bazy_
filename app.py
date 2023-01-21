@@ -4,7 +4,7 @@ from flask_mysqldb import MySQL
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret key' 
-app.config['MYSQL_HOST'] = 'database-project-pwr.mysql.database.azure.com'
+app.config['MYSQL_HOST'] = 'database-project-pwrmysqldatabaseazurecom.mysql.database.azure.com'
 app.config['MYSQL_USER'] = 'project0admindb'
 app.config['MYSQL_PASSWORD'] = 'dzbany&p0rcelanyDB*k0l'
 app.config['MYSQL_DB'] = 'dbp2'
@@ -330,7 +330,7 @@ def lodowka():
 
         #define query
         query = 'CALL przepisy_na_podstawie_inventory(%s)'
-        query2 = 'CALL pokaz_skladniki_uzytkownika(%s)'
+        query2 = 'CALL pokaz_skladniki_uzytkownikaa(%s)'
 
         # Execute a query
         cur.execute(query, (user_id, ))
