@@ -330,7 +330,7 @@ def lodowka():
 
         #define query
         query = 'CALL przepisy_na_podstawie_inventory(%s)'
-        query2 = 'CALL pokaz_skladniki_uzytkownikaa(%s)'
+        query2 = 'CALL pokaz_skladniki_uzytkownika(%s)'
 
         # Execute a query
         cur.execute(query, (user_id, ))
