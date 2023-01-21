@@ -1,0 +1,67 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <h1>Recenzje</h1>
+    
+
+    <table id="przepisy_" style="border: 1px solid black;">
+        <tr>
+          <th>Autor</th>
+          <th>Treść</th>
+          <th>Ocena</th>
+          <th></th>
+          <th>Zgłoś</th>
+        </tr>
+        {% for row in reviews %}
+        <tr>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td></td>
+            <td><a href="{{ url_for('zglos', reported_user=row[1], selected_przepis=row[0]) }}" id="selected_przepis">Zgłoś</a></td>
+        </tr>
+        {% endfor %}
+    </table> 
+    
+    <p>Chcesz zgłosić recenzję? Klikij zgłoś, aby przejść dalej</p>
+    <br>
+    <br>
+    <br>
+    <form method="POST">
+
+        <h2>Dodaj własną recenzję</h2>
+        
+        <p>Oceń przepis:</p>
+        <input type="radio" name="options" id="1" value="1">
+            <label for="1">1</label>&nbsp;&nbsp;&nbsp;
+        <input type="radio" name="options" id="2" value="2">
+            <label for="2">2</label>&nbsp;&nbsp;&nbsp;
+        <input type="radio" name="options" id="3" value="3">
+            <label for="3">3</label>&nbsp;&nbsp;&nbsp;
+        <input type="radio" name="options" id="4" value="4">
+            <label for="4">4</label>&nbsp;&nbsp;&nbsp;
+        <input type="radio" name="options" id="5" value="2">
+            <label for="5">5</label>&nbsp;&nbsp;&nbsp;  
+
+        <br>
+        <br>
+
+        <label for="tresc">Treść recenzji</label>
+        <br>
+        <textarea name="tresc"
+                  placeholder="Twoja recenzja"
+                  rows="15"
+                  cols="60"
+                  >{{ request.form['tresc'] }}</textarea>
+        <br>
+        <button type="submit" name="submit_button">Wyślij recenzję</button>
+
+    </form>
+</body>
+</html>

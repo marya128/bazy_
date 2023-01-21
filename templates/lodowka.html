@@ -4,10 +4,55 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+
 </head>
 <body>
-    {% for res in results %}
-        <p>{{res}}</p>
-    {% endfor %}
+    <h2>Proponowane przepisy:</h2>
+    <table id="lodowka" style="border: 1px solid black;">
+        <tr>
+            <th>id_przepisu</th>
+            <th>nazwa</th>
+            <th>rozmiar porcji</th>
+            <th>ocena</th>
+            <th>ilosc posiadanych skladników</th>
+            <th>ilosc skladnikow w przepisie</th>
+            <th>procent_zgodnosci</th>
+        </tr>
+        {% for res in results %}
+        <tr>
+            <td>{{ res[0] }}</td>
+            <td>{{ res[1] }}</td>
+            <td>{{ res[2] }}</td>
+            <td><a href="{{ url_for('recenzje_przepis', selected_recipe=res[0]) }}">{{res[3]}}</a></td>
+            <td><a href="{{ url_for('recipe_skladniki', selected_recipe=res[0]) }}" id="selected_recipe" >{{ res[4] }}</a></td>
+            <td>{{ res[5] }}</td>
+            <td>{{ res[6] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    <h3>Składniki które posiadasz</h3>
+    <table id="lodowka2" style="border: 1px solid black;">
+        <tr>
+            <th>nazwa skladnika</th>
+        </tr>
+        {% for res in results2 %}
+        <tr>
+        <td>{{ res[0] }}</td>
+        <td><a href="{{ url_for('usun_skladnik', ingredient=res[0]) }}" style="color: black;">Usuń</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h3>Wybierz produkt/y z listy, aby dodać</h3>
+    <form method="POST">
+        <SELECT id="myform" name="ingr" multiple style="border: 2px solid black; background-color: #eee;">
+            {% for row in results3 %}
+                <OPTION value="{{row[0]}}">{{row[0]}}</OPTION>
+            {% endfor %}
+        </SELECT>
+        <input name="column" type="submit" style="display: block;"></input>
+    </form>
 </body>
 </html>

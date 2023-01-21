@@ -2,20 +2,23 @@
 <head>
 	<meta charset="UTF-8">
 	<title> Login </title>
-	<!-- <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">		 -->
 </head>
 
-<body></br></br></br></br></br>
+<body style="background-image: url('https://wallpapercave.com/wp/wp9167602.jpg');background-size:cover">
+</br></br></br></br></br>
 	<div align="center">
 		<div align="center" class="border">
 			<div class="header">
-				<h1 class="word">Login</h1>
-			</div></br></br></br>
+				<h1 class="word">Zaloguj się</h1>
+			</div>
+
+			</br></br></br>
+			
 			<h2 class="word">
-				<form action="{{ url_for('login') }}" method="post">
+				<form action="{{ url_for('login') }}" method="post" style="text-align:center">
 				<div class="msg">{{ msg }}</div>
-					<input id="username" name="username" type="text" placeholder="Enter Your Username" class="textbox"/></br></br>
-					<input type="submit" class="btn" value="Sign In"></br></br>
+					<input id="username" name="username" type="text" placeholder="Wpisz swoją nazwę użytkownika" class="textbox"/></br></br>
+				<input type="submit" class="btn" value="Zaloguj się" style="display: block; float:center; margin: 0 auto">
 				</form>
 			</h2>
 		</div>

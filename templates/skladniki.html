@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <h1>Składniki:</h1>
+    {% for row in results %}
+        {% if row[0] not in ingr_user %}
+            {{ row[0] }} {{ row[1] }} {{ row[2] }}
+        {% else %}
+            <p style="color: red;"> {{ row[0]}} {{ row[1] }} {{ row[2] }} </p>
+        {% endif %}
+    {% endfor %}
+
+    <br>
+    <br>
+    <h2>Legenda:</h2>
+    <p style="color: red;">Nie posiadasz</p>
+    <p> Posiadasz</p>
+
+    <!-- <h1>Twoje składniki:</h1>
+    {% for row in results2 %}
+    {{ row[0] }}
+    {{ row[1] }}
+    {{ row[2] }}
+    <br>
+    {% endfor %} -->
+</body>
+</html>

@@ -7,17 +7,18 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 <body>
-    <h1>Wybierz przepis</h1>
-
-    <table id="przepisy_" style="border: 1px solid black">
+    <h1> top 10 przepisow</h1>
+    <table id="top10" style="border: 1px solid black;">
         <tr>
-          <th>nazwa</th>
+          <th>Przepis</th>
+          <th>Ocena</th>
         </tr>
-        {% for row in results %}
+        {% for r in results %}
         <tr>
-            <td><a href="{{ url_for('recenzje_przepis', selected_recipe=row[0]) }}" id="selected_recipe">{{row[1]}}</a></td>
+            <td>{{ r[0] }}</td>
+            <td>{{ r[1] }}</td>        
         </tr>
         {% endfor %}
-    </table>  
+    </table> 
 </body>
 </html>
